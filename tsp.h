@@ -18,7 +18,7 @@
 #include <limits>
 #include <algorithm>
 
-std::pair<std::vector<char>, int> solveTSP(const std::vector<std::vector<int>>& dist) {
+std::pair<std::vector<char>, int> solve_tsp(const std::vector<std::vector<int>>& dist) {
     int n = dist.size();
     std::vector<int> cities(n);
     for (int i = 0; i < n; ++i) cities[i] = i;

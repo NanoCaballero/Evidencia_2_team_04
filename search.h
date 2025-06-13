@@ -19,7 +19,7 @@
 #include <cmath>
 #include <limits>
 
-std::pair<int, double> findClosestCentral(const std::pair<int, int>& newHouse, const std::vector<std::pair<int, int>>& centrals) {
+std::pair<int, double> find_closest_central(const std::pair<int, int>& newHouse, const std::vector<std::pair<int, int>>& centrals) {
     double minDist = std::numeric_limits<double>::max();
     int idx = -1;
 

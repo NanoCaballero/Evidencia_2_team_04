@@ -25,7 +25,7 @@ TEST(KruskalTest, BasicMST) {
     g.AddEdge(2, 3, 3);
     g.AddEdge(0, 3, 4);
 
-    auto mst = kruskalMST(g);
+    auto mst = kruskal_mst(g);
     EXPECT_EQ(mst.GetSize(), 3);
 }
 
@@ -36,7 +36,7 @@ TEST(TSPTest, SimpleTour) {
         {1, 0, 3},
         {2, 3, 0}
     };
-    auto [path, cost] = solveTSP(dist);
+    auto [path, cost] = solve_tsp(dist);
     EXPECT_EQ(cost, 6);
     EXPECT_EQ(path.front(), 'A');
     EXPECT_EQ(path.back(), 'A');
@@ -57,7 +57,7 @@ TEST(ford_fulkersonTest, SmallGraphFlow) {
 TEST(SearchTest, FindsClosestCentral) {
     std::vector<std::pair<int, int>> centrals = {{0, 0}, {4, 3}, {7, 1}};
     std::pair<int, int> house = {1, 1};
-    auto [idx, dist] = findClosestCentral(house, centrals);
+    auto [idx, dist] = find_closest_central(house, centrals);
     EXPECT_EQ(idx, 0);
 }
 

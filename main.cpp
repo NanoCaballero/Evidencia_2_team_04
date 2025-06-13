@@ -35,7 +35,7 @@ int main() {
         for (int j = 0; j < n; ++j) {
             cin >> dist[i][j];
             if (i < j && dist[i][j] > 0)
-                g.add_edge(i, j, dist[i][j]);
+                g.AddEdge(i, j, dist[i][j]);
         }
 
     // Leer capacidades
@@ -56,13 +56,13 @@ int main() {
     pair<int, int> newHouse = {xNew, yNew};
 
     // 1. Fibra óptica (Kruskal)
-    auto mst = kruskalMST(g);
+    auto mst = kruskal_mst(g);
     cout << "1.\n";
     for (auto [u, v] : mst)
         cout << "(" << char('A' + u) << ", " << char('A' + v) << ")\n";
 
     // 2. Reparto (TSP)
-    auto [path, cost] = solveTSP(dist);
+    auto [path, cost] = solve_tsp(dist);
     cout << "2.\n";
     for (char c : path)
         cout << c << " ";
@@ -72,7 +72,7 @@ int main() {
     cout << "3.\n" << ford_fulkerson(capacity, 0, n - 1) << "\n";
 
     // 4. Central más cercana
-    auto [idx, d] = findClosestCentral(newHouse, centrals);
+    auto [idx, d] = find_closest_central(newHouse, centrals);
     cout << "4.\n(" << centrals[idx].first << ", " << centrals[idx].second << ")\n";
 
     return 0;
