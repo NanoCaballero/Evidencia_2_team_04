@@ -19,14 +19,14 @@
 #include <tuple>
 #include <algorithm>
 
-int FindSet(int u, std::vector<int>& parent) {
+int find_set(int u, std::vector<int>& parent) {
     if (parent[u] != u)
-        parent[u] = FindSet(parent[u], parent);
+        parent[u] = find_set(parent[u], parent);
     return parent[u];
 }
 
-void UnionSet(int u, int v, std::vector<int>& parent) {
-    parent[FindSet(u, parent)] = FindSet(v, parent);
+void union_set(int u, int v, std::vector<int>& parent) {
+    parent[find_set(u, parent)] = find_set(v, parent);
 }
 
 std::vector<std::pair<int, int>> kruskal_mst(const Graph& g) {
@@ -41,9 +41,9 @@ std::vector<std::pair<int, int>> kruskal_mst(const Graph& g) {
 
     std::vector<std::pair<int, int>> mst;
     for (auto [u, v, w] : edges) {
-        if (FindSet(u, parent) != FindSet(v, parent)) {
+        if (find_set(u, parent) != find_set(v, parent)) {
             mst.emplace_back(u, v);
-            UnionSet(u, v, parent);
+            union_set(u, v, parent);
         }
     }
 
