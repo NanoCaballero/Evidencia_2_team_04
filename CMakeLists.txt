@@ -47,8 +47,22 @@ FetchContent_MakeAvailable(googletest)
 if (ENABLE_TESTING)
     enable_testing()
 
-    add_executable(test_main test/test_main.cpp)
-    target_link_libraries(test_main PRIVATE gtest gtest_main)
+    add_executable(test_main
+    test/test_main.cpp
+    ford_fulkerson.cpp
+    graph.cpp
+    kruskal.cpp
+    search.cpp
+    tsp.cpp
+)
+target_link_libraries(test_main PRIVATE gtest gtest_main)
+
+if (ENABLE_COVERAGE)
+    target_link_libraries(test_main PRIVATE gcov)
+    target_compile_options(test_main PRIVATE --coverage -fprofile-arcs -ftest-coverage)
+    target_link_options(test_main PRIVATE --coverage)
+endif()
+
 
     if (ENABLE_COVERAGE)
         target_link_libraries(test_main PRIVATE gcov)
