@@ -6,7 +6,8 @@
  * Bernardo Caballero Zambrano A01722757
  * Juan Daniel Vázquez Alonso A01285354
  * Harold Andres Lancheros Álvarez A00836416
- * Francisco Vaquera
+ * Francisco Vaquera A01234377
+ * Pablo Velazquez A01734635
  * Fecha: Junio 2025
  */
 
@@ -25,7 +26,7 @@ TEST(KruskalTest, BasicMST) {
     g.add_edge(0, 3, 4);
 
     auto mst = kruskalMST(g);
-    EXPECT_EQ(mst.size(), 3);
+    EXPECT_EQ(mst.size_of_graph(), 3);
 }
 
 // === TSP ===
