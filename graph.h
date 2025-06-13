@@ -19,11 +19,19 @@
 #include <vector>
 #include <tuple>
 
+// Clase para representar un grafo
 class Graph {
 public:
+    // Constructor que inicializa el grafo con n nodos
     Graph(int n);
+    
+    // Agrega una arista al grafo
     void AddEdge(int u, int v, int w);
+
+    // Obtiene las aristas del grafo
     const std::vector<std::tuple<int, int, int>>& GetEdges() const;
+
+    // Obtiene el tamaño del grafo (número de nodos)
     int GetSize() const;
 
 private:

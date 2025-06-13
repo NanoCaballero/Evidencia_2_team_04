@@ -18,7 +18,10 @@
 
 #include <vector>
 
+// Function prototypes
 bool bfs(const std::vector<std::vector<int>>&, int, int, std::vector<int>&);
+
+// Ford-Fulkerson algorithm to find the maximum flow from source to sink
 int ford_fulkerson(const std::vector<std::vector<int>>&, int, int);
 
 #endif

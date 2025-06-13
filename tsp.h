@@ -19,6 +19,7 @@
 #include <vector>
 #include <utility>
 
+// Function to solve the Traveling Salesman Problem (TSP) using brute force
 std::pair<std::vector<char>, int> solve_tsp(const std::vector<std::vector<int>>& dist);
 
 #endif

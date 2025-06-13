@@ -20,8 +20,13 @@
 #include <vector>
 #include <tuple>
 
+// Function prototypes for Kruskal's algorithm
 int find_set(int u, std::vector<int>& parent);
+
+// Unir dos conjuntos en el conjunto disjunto
 void union_set(int u, int v, std::vector<int>& parent);
+
+// Kruskal's algorithm to find the minimum spanning tree (MST)
 std::vector<std::pair<int, int>> kruskal_mst(const Graph& g);
 
 #endif
