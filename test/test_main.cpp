@@ -90,3 +90,23 @@ TEST(graph_test, edges_and_size) {
     EXPECT_EQ(g.GetSize(), 3);
 }
 
+TEST(KruskalTest, NoEdges) {
+    Graph g(3); // sin aristas
+    auto mst = kruskal_mst(g);
+    EXPECT_EQ(mst.size(), 0);
+}
+
+TEST(FordFulkersonTest, NoPath) {
+    std::vector<std::vector<int>> capacity = {
+        {0, 0},
+        {0, 0}
+    };
+    EXPECT_EQ(ford_fulkerson(capacity, 0, 1), 0);
+}
+
+TEST(TSPTest, SingleNode) {
+    std::vector<std::vector<int>> dist = {{0}};
+    auto [path, cost] = solve_tsp(dist);
+    EXPECT_EQ(cost, 0);
+    EXPECT_EQ(path.size(), 2);
+}
