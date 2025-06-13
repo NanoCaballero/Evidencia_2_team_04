@@ -3,21 +3,27 @@ project(RedOptima)
 
 set(CMAKE_CXX_STANDARD 17)
 
+# Coverage flags si está activado
+option(ENABLE_COVERAGE "Enable coverage reporting" ON)
+if (ENABLE_COVERAGE)
+    message(STATUS "Coverage enabled")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage -fprofile-arcs -ftest-coverage")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
+endif()
+
 # GoogleTest
 include(FetchContent)
 FetchContent_Declare(
   googletest
   URL https://github.com/google/googletest/archive/release-1.12.1.zip
 )
-# For Windows: Prevent overriding the parent project's compiler/linker settings
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-# Archivos fuente
+# Biblioteca principal (sin main.cpp)
 add_library(core
-    main.cpp
     graph.h
     kruskal.h
     tsp.h
@@ -25,7 +31,11 @@ add_library(core
     search.h
 )
 
-# Test executable
+# Ejecutable main (solo para ejecución funcional, no tests)
+add_executable(main_exec main.cpp)
+target_link_libraries(main_exec core)
+
+# Tests
 add_executable(test_main
     test/test_main.cpp
 )
