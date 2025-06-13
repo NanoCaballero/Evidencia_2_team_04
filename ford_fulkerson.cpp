@@ -1,0 +1,62 @@
+/*
+ * Archivo: ford_fulkerson.cpp
+ * Descripción: Implementación del algoritmo Ford-Fulkerson.
+ * Autores: 
+ * Bernardo Caballero Zambrano A01722757
+ * Juan Daniel Vázquez Alonso A01285354
+ * Harold Andres Lancheros Álvarez A00836416
+ * Francisco Vaquera A01234377
+ * Pablo Velazquez A01734635
+ * Fecha: Junio 2025
+ */
+
+#include "ford_fulkerson.h"
+#include <queue>
+#include <limits>
+
+bool bfs(const std::vector<std::vector<int>>& rGraph, int s, int t, std::vector<int>& parent) {
+    int n = rGraph.size();
+    std::vector<bool> visited(n, false);
+    std::queue<int> q;
+    q.push(s);
+    visited[s] = true;
+    parent[s] = -1;
+
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        for (int v = 0; v < n; ++v) {
+            if (!visited[v] && rGraph[u][v] > 0) {
+                q.push(v);
+                parent[v] = u;
+                visited[v] = true;
+            }
+        }
+    }
+
+    return visited[t];
+}
+
+int ford_fulkerson(const std::vector<std::vector<int>>& capacity, int s, int t) {
+    int n = capacity.size();
+    std::vector<std::vector<int>> rGraph = capacity;
+    std::vector<int> parent(n);
+    int maxFlow = 0;
+
+    while (bfs(rGraph, s, t, parent)) {
+        int pathFlow = std::numeric_limits<int>::max();
+        for (int v = t; v != s; v = parent[v])
+            pathFlow = std::min(pathFlow, rGraph[parent[v]][v]);
+
+        for (int v = t; v != s; v = parent[v]) {
+            int u = parent[v];
+            rGraph[u][v] -= pathFlow;
+            rGraph[v][u] += pathFlow;
+        }
+
+        maxFlow += pathFlow;
+    }
+
+    return maxFlow;
+}
+

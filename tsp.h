@@ -1,4 +1,3 @@
-
 /*
  * Archivo: tsp.h
  * Descripción: Solución al problema del vendedor viajero (TSP) usando fuerza bruta.
@@ -15,35 +14,8 @@
 #define TSP_H
 
 #include <vector>
-#include <limits>
-#include <algorithm>
+#include <utility>
 
-std::pair<std::vector<char>, int> solve_tsp(const std::vector<std::vector<int>>& dist) {
-    int n = dist.size();
-    std::vector<int> cities(n);
-    for (int i = 0; i < n; ++i) cities[i] = i;
-
-    int minCost = std::numeric_limits<int>::max();
-    std::vector<int> bestPath;
-
-    do {
-        int cost = 0;
-        for (int i = 0; i < n - 1; ++i)
-            cost += dist[cities[i]][cities[i + 1]];
-        cost += dist[cities[n - 1]][cities[0]];
-
-        if (cost < minCost) {
-            minCost = cost;
-            bestPath = cities;
-        }
-    } while (std::next_permutation(cities.begin(), cities.end()));
-
-    std::vector<char> path;
-    for (int i : bestPath) path.push_back('A' + i);
-    path.push_back('A'); // regresa al origen
-
-    return {path, minCost};
-}
+std::pair<std::vector<char>, int> solve_tsp(const std::vector<std::vector<int>>& dist);
 
 #endif
-
