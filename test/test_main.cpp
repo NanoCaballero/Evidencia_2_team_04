@@ -1,13 +1,12 @@
-
 /*
  * Archivo: test_main.cpp
- * Descripción: Pruebas de algoritmos Kruskal, TSP, Ford-Fulkerson y búsqueda de central más cercana.
+ * Descripción: Pruebas para algoritmos de Kruskal, TSP, Ford-Fulkerson y búsqueda de central.
  * Autores: 
  * Bernardo Caballero Zambrano A01722757
  * Juan Daniel Vázquez Alonso A01285354
  * Harold Andres Lancheros Álvarez A00836416
  * Francisco Vaquera A01234377
- * Pablo Velazquez A01734635
+ * Pablo Velázquez A01734635
  * Fecha: Junio 2025
  */
 
@@ -17,73 +16,78 @@
 #include "../ford_fulkerson.h"
 #include "../search.h"
 
-// === Parte 1: Kruskal ===
+// === Pruebas de Kruskal ===
 
 TEST(kruskal_test, basic_mst) {
     Graph g(4);
-    g.add_edge(0, 1, 1);
-    g.add_edge(1, 2, 2);
-    g.add_edge(2, 3, 3);
-    g.add_edge(0, 3, 4);
+    g.AddEdge(0, 1, 1);
+    g.AddEdge(1, 2, 2);
+    g.AddEdge(2, 3, 3);
+    g.AddEdge(0, 3, 4);
 
     auto mst = kruskal_mst(g);
-    EXPECT_EQ(mst.size(), 3);
+    EXPECT_EQ(mst.size(), 3);  // un MST en grafo de 4 nodos tiene 3 aristas
 }
 
-// === Parte 2: TSP ===
+// === Pruebas de TSP ===
 
-TEST(tsp_test, simple_tour) {
+TEST(tsp_test, simple_cycle) {
     std::vector<std::vector<int>> dist = {
         {0, 1, 2},
         {1, 0, 3},
         {2, 3, 0}
     };
+
     auto [path, cost] = solve_tsp(dist);
     EXPECT_EQ(cost, 6);
     EXPECT_EQ(path.front(), 'A');
     EXPECT_EQ(path.back(), 'A');
 }
 
-// === Parte 3: Ford-Fulkerson ===
+// === Pruebas de Ford-Fulkerson ===
 
-TEST(ford_fulkerson_test, small_graph_flow) {
+TEST(ford_fulkerson_test, flow_exists) {
     std::vector<std::vector<int>> cap = {
         {0, 3, 2, 0},
         {0, 0, 5, 2},
         {0, 0, 0, 3},
         {0, 0, 0, 0}
     };
+
     EXPECT_EQ(ford_fulkerson(cap, 0, 3), 4);
 }
 
-TEST(ford_fulkerson_test, no_path_available) {
+TEST(ford_fulkerson_test, no_flow_path) {
     std::vector<std::vector<int>> cap = {
         {0, 0},
         {0, 0}
     };
+
     EXPECT_EQ(ford_fulkerson(cap, 0, 1), 0);
 }
 
-// === Parte 4: Closest Central ===
+// === Pruebas de búsqueda de central más cercana ===
 
-TEST(search_test, finds_closest_central) {
+TEST(search_test, closest_central) {
     std::vector<std::pair<int, int>> centrals = {{0, 0}, {4, 3}, {7, 1}};
     std::pair<int, int> house = {1, 1};
+
     auto [idx, dist] = find_closest_central(house, centrals);
     EXPECT_EQ(idx, 0);
 }
 
-// === Parte 5: Graph Methods ===
+// === Pruebas del grafo ===
 
 TEST(graph_test, add_edge_and_get_edges) {
     Graph g(3);
-    g.add_edge(0, 1, 10);
-    auto edges = g.get_edges();
+    g.AddEdge(0, 1, 10);
+    auto edges = g.GetEdges();
+
     EXPECT_EQ(edges.size(), 1);
     EXPECT_EQ(edges[0], std::make_tuple(0, 1, 10));
 }
 
 TEST(graph_test, graph_size) {
     Graph g(4);
-    EXPECT_EQ(g.get_size(), 4);
+    EXPECT_EQ(g.GetSize(), 4);
 }
