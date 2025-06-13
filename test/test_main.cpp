@@ -20,13 +20,13 @@
 // === Kruskal ===
 TEST(KruskalTest, BasicMST) {
     Graph g(4);
-    g.add_edge(0, 1, 1);
-    g.add_edge(1, 2, 2);
-    g.add_edge(2, 3, 3);
-    g.add_edge(0, 3, 4);
+    g.AddEdge(0, 1, 1);
+    g.AddEdge(1, 2, 2);
+    g.AddEdge(2, 3, 3);
+    g.AddEdge(0, 3, 4);
 
     auto mst = kruskalMST(g);
-    EXPECT_EQ(mst.size_of_graph(), 3);
+    EXPECT_EQ(mst.GetSize(), 3);
 }
 
 // === TSP ===
@@ -59,4 +59,25 @@ TEST(SearchTest, FindsClosestCentral) {
     std::pair<int, int> house = {1, 1};
     auto [idx, dist] = findClosestCentral(house, centrals);
     EXPECT_EQ(idx, 0);
+}
+
+TEST(FordFulkersonTest, NoPathAvailable) {
+    std::vector<std::vector<int>> cap = {
+        {0, 0},
+        {0, 0}
+    };
+    EXPECT_EQ(run_max_flow(cap, 0, 1), 0);
+}
+
+TEST(GraphTest, AddEdgeAndGetEdges) {
+    Graph g(3);
+    g.AddEdge(0, 1, 10);
+    auto edges = g.GetEdges();
+    EXPECT_EQ(edges.size(), 1);
+    EXPECT_EQ(edges[0], std::make_tuple(0, 1, 10));
+}
+
+TEST(GraphTest, Size) {
+    Graph g(4);
+    EXPECT_EQ(g.GetSize(), 4);
 }

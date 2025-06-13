@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.14)
 project(RedOptima)
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Opción para habilitar cobertura
+option(ENABLE_COVERAGE "Enable code coverage" ON)
 
 # GoogleTest
 include(FetchContent)
@@ -9,13 +13,12 @@ FetchContent_Declare(
   googletest
   URL https://github.com/google/googletest/archive/release-1.12.1.zip
 )
-# For Windows: Prevent overriding the parent project's compiler/linker settings
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-# Archivos fuente
+# Fuente principal (como biblioteca para facilitar testing)
 add_library(core
     main.cpp
     graph.h
@@ -25,7 +28,14 @@ add_library(core
     search.h
 )
 
-# Test executable
+# Cobertura si está habilitada
+if(ENABLE_COVERAGE)
+    message(STATUS "Coverage enabled")
+    target_compile_options(core PRIVATE --coverage)
+    target_link_libraries(core PRIVATE --coverage)
+endif()
+
+# Executable de pruebas
 add_executable(test_main
     test/test_main.cpp
 )
