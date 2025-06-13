@@ -11,6 +11,8 @@
  */
 
 #include "kruskal.h"
+#include <algorithm>
+
 
 int find_set(int u, std::vector<int>& parent) {
     if (parent[u] != u)
