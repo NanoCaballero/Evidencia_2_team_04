@@ -1,13 +1,16 @@
 /*
- * Archivo: test_main.cpp
- * Descripción: Pruebas para algoritmos de Kruskal, TSP, Ford-Fulkerson y búsqueda de central.
- * Autores: 
+ * Copyright (c) 2025 Team 4
+ * SPDX-License-Identifier: MIT
+ *
+ * File: test_main.cpp
+ * Description: Unit tests for the algorithms implemented in the project.
+ * Authors:
  * Bernardo Caballero Zambrano A01722757
  * Juan Daniel Vázquez Alonso A01285354
  * Harold Andres Lancheros Álvarez A00836416
  * Francisco Vaquera A01234377
- * Pablo Velázquez A01734635
- * Fecha: Junio 2025
+ * Pablo Velazquez A01734635
+ * Date: June 2025
  */
 
 

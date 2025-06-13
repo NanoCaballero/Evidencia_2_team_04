@@ -1,13 +1,16 @@
 /*
- * Archivo: tsp.h
- * Descripción: Solución al problema del vendedor viajero (TSP) usando fuerza bruta.
- * Autores: 
+ * Copyright (c) 2025 Team 4
+ * SPDX-License-Identifier: MIT
+ *
+ * File: tsp.h
+ * Description: Header file for the TSP solution using brute force.
+ * Authors:
  * Bernardo Caballero Zambrano A01722757
  * Juan Daniel Vázquez Alonso A01285354
  * Harold Andres Lancheros Álvarez A00836416
  * Francisco Vaquera A01234377
  * Pablo Velazquez A01734635
- * Fecha: Junio 2025
+ * Date: June 2025
  */
 
 #ifndef TSP_H
