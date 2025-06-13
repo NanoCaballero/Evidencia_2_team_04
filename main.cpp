@@ -1,7 +1,8 @@
 
 /*
  * Archivo: main.cpp
- * Descripción: Función principal que integra la lógica de entrada/salida y utiliza los algoritmos de Kruskal, TSP, Ford-Fulkerson y búsqueda de central más cercana.
+ * Descripción: Función principal que integra la lógica de entrada/salida y utiliza los algoritmos de Kruskal, 
+ * TSP, Ford-Fulkerson y búsqueda de central más cercana.
  * Autores: 
  * Bernardo Caballero Zambrano A01722757
  * Juan Daniel Vázquez Alonso A01285354
