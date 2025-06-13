@@ -31,6 +31,7 @@ int main() {
     vector<vector<int>> capacity(n, vector<int>(n));
     vector<pair<int, int>> centrals;
 
+    // Leer distancias
     for (int i = 0; i < n; ++i)
         for (int j = 0; j < n; ++j) {
             cin >> dist[i][j];
@@ -38,33 +39,40 @@ int main() {
                 g.AddEdge(i, j, dist[i][j]);
         }
 
+    // Leer capacidades
     for (int i = 0; i < n; ++i)
         for (int j = 0; j < n; ++j)
             cin >> capacity[i][j];
 
+    // Leer coordenadas
     for (int i = 0; i < n; ++i) {
         int x, y;
         cin >> x >> y;
         centrals.emplace_back(x, y);
     }
 
+    // Leer ubicación nueva casa
     int xNew, yNew;
     cin >> xNew >> yNew;
     pair<int, int> newHouse = {xNew, yNew};
 
+    // 1. Fibra óptica (Kruskal)
     auto mst = kruskal_mst(g);
     cout << "1.\n";
     for (auto [u, v] : mst)
         cout << "(" << char('A' + u) << ", " << char('A' + v) << ")\n";
 
+    // 2. Reparto (TSP)
     auto [path, cost] = solve_tsp(dist);
     cout << "2.\n";
     for (char c : path)
         cout << c << " ";
     cout << "\n";
 
+    // 3. Flujo máximo (Ford-Fulkerson)
     cout << "3.\n" << ford_fulkerson(capacity, 0, n - 1) << "\n";
 
+    // 4. Central más cercana
     auto [idx, d] = find_closest_central(newHouse, centrals);
     cout << "4.\n(" << centrals[idx].first << ", " << centrals[idx].second << ")\n";
 
