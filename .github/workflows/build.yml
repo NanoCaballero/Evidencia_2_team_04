@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-    name: Build, Test and Analyze
     runs-on: ubuntu-latest
 
     steps:
@@ -16,10 +15,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y cmake lcov gcovr g++ llvm
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lcov gcovr g++ cmake
 
       - name: Configure CMake
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS="--coverage"
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS="--coverage" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
       - name: Build project
         run: cmake --build build
@@ -31,7 +32,7 @@ jobs:
 
       - name: Generate coverage report with gcovr
         run: |
-          gcovr --root . --exclude 'test/*' --exclude 'build/*' --exclude 'main.cpp' --sonarqube -o build/coverage.xml
+          gcovr --root . --sonarqube -o build/coverage.xml --exclude 'test/*' --exclude 'main.cpp'
 
       - name: SonarQube Scan
         uses: sonarsource/sonarqube-scan-action@v3
@@ -39,7 +40,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
-      - name: Check Quality Gate
+      - name: SonarQube Quality Gate
         uses: sonarsource/sonarqube-quality-gate-action@master
-        with:
-          scanMetadataReportFile: .scannerwork/report-task.txt
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
