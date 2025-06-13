@@ -19,10 +19,10 @@
 // === Kruskal ===
 TEST(KruskalTest, BasicMST) {
     Graph g(4);
-    g.addEdge(0, 1, 1);
-    g.addEdge(1, 2, 2);
-    g.addEdge(2, 3, 3);
-    g.addEdge(0, 3, 4);
+    g.add_edge(0, 1, 1);
+    g.add_edge(1, 2, 2);
+    g.add_edge(2, 3, 3);
+    g.add_edge(0, 3, 4);
 
     auto mst = kruskalMST(g);
     EXPECT_EQ(mst.size(), 3);
@@ -42,14 +42,14 @@ TEST(TSPTest, SimpleTour) {
 }
 
 // === Ford-Fulkerson ===
-TEST(FordFulkersonTest, SmallGraphFlow) {
+TEST(ford_fulkersonTest, SmallGraphFlow) {
     std::vector<std::vector<int>> cap = {
         {0, 3, 2, 0},
         {0, 0, 5, 2},
         {0, 0, 0, 3},
         {0, 0, 0, 0}
     };
-    EXPECT_EQ(fordFulkerson(cap, 0, 3), 4);
+    EXPECT_EQ(ford_fulkerson(cap, 0, 3), 4);
 }
 
 // === Closest Central ===

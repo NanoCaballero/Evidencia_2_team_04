@@ -1,3 +1,4 @@
+
 /*
  * Archivo: kruskal.h
  * Descripción: Algoritmo de Kruskal para encontrar el árbol de expansión mínima.
@@ -28,8 +29,8 @@ void unionSet(int u, int v, std::vector<int>& parent) {
 }
 
 std::vector<std::pair<int, int>> kruskalMST(const Graph& g) {
-    int n = g.size();
-    auto edges = g.getEdges();
+    int n = g.size_of_graph();
+    auto edges = g.get_edges();
     std::sort(edges.begin(), edges.end(), [](auto& a, auto& b) {
         return std::get<2>(a) < std::get<2>(b);
     });
@@ -49,3 +50,4 @@ std::vector<std::pair<int, int>> kruskalMST(const Graph& g) {
 }
 
 #endif
+

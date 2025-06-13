@@ -26,7 +26,8 @@ bool bfs(const std::vector<std::vector<int>>& rGraph, int s, int t, std::vector<
     parent[s] = -1;
 
     while (!q.empty()) {
-        int u = q.front(); q.pop();
+        int u = q.front();
+        q.pop();
         for (int v = 0; v < n; ++v) {
             if (!visited[v] && rGraph[u][v] > 0) {
                 q.push(v);
@@ -39,7 +40,7 @@ bool bfs(const std::vector<std::vector<int>>& rGraph, int s, int t, std::vector<
     return visited[t];
 }
 
-int fordFulkerson(const std::vector<std::vector<int>>& capacity, int s, int t) {
+int ford_fulkerson(const std::vector<std::vector<int>>& capacity, int s, int t) {
     int n = capacity.size();
     std::vector<std::vector<int>> rGraph = capacity;
     std::vector<int> parent(n);

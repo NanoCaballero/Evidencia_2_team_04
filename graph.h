@@ -20,17 +20,17 @@ class Graph {
 public:
     Graph(int n) : n(n), adjMatrix(n, std::vector<int>(n, 0)) {}
 
-    void addEdge(int u, int v, int w) {
+    void add_edge(int u, int v, int w) {
         edges.emplace_back(u, v, w);
         adjMatrix[u][v] = w;
         adjMatrix[v][u] = w;
     }
 
-    const std::vector<std::tuple<int, int, int>>& getEdges() const {
+    const std::vector<std::tuple<int, int, int>>& get_edges() const {
         return edges;
     }
 
-    int size() const {
+    int size_of_graph() const {
         return n;
     }
 

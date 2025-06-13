@@ -34,7 +34,7 @@ int main() {
         for (int j = 0; j < n; ++j) {
             cin >> dist[i][j];
             if (i < j && dist[i][j] > 0)
-                g.addEdge(i, j, dist[i][j]);
+                g.add_edge(i, j, dist[i][j]);
         }
 
     // Leer capacidades
@@ -68,7 +68,7 @@ int main() {
     cout << "\n";
 
     // 3. Flujo máximo (Ford-Fulkerson)
-    cout << "3.\n" << fordFulkerson(capacity, 0, n - 1) << "\n";
+    cout << "3.\n" << ford_fulkerson(capacity, 0, n - 1) << "\n";
 
     // 4. Central más cercana
     auto [idx, d] = findClosestCentral(newHouse, centrals);
