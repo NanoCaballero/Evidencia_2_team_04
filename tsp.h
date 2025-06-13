@@ -39,7 +39,13 @@
 #include <vector>
 #include <utility>
 
-// Function to solve the Traveling Salesman Problem (TSP) using brute force
+/**
+ * Resuelve el problema del vendedor viajero (TSP) usando fuerza bruta.
+ * 
+ * @param dist Matriz de distancias entre ciudades.
+ * @return Par con el camino óptimo (como caracteres) y el costo mínimo.
+ */
 std::pair<std::vector<char>, int> solve_tsp(const std::vector<std::vector<int>>& dist);
+
 
 #endif

@@ -38,10 +38,26 @@
 
 #include <vector>
 
-// Function prototypes
+/**
+ * Realiza una búsqueda en anchura (BFS) sobre un grafo residual.
+ * 
+ * @param rGraph El grafo residual.
+ * @param s Nodo origen.
+ * @param t Nodo destino.
+ * @param parent Vector para reconstruir el camino.
+ * @return true si hay camino de s a t, false si no.
+ */
 bool bfs(const std::vector<std::vector<int>>&, int, int, std::vector<int>&);
 
-// Ford-Fulkerson algorithm to find the maximum flow from source to sink
+/**
+ * Calcula el flujo máximo entre dos nodos usando el algoritmo de Ford-Fulkerson.
+ * 
+ * @param capacity Matriz de capacidades.
+ * @param s Nodo origen.
+ * @param t Nodo destino.
+ * @return Flujo máximo.
+ */
 int ford_fulkerson(const std::vector<std::vector<int>>&, int, int);
+
 
 #endif

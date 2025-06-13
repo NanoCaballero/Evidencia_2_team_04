@@ -40,13 +40,28 @@
 #include <vector>
 #include <tuple>
 
-// Function prototypes for Kruskal's algorithm
+/**
+ * Encuentra el representante del conjunto de un nodo.
+ * @param u Nodo.
+ * @param parent Vector de padres.
+ * @return Representante del conjunto.
+ */
 int find_set(int u, std::vector<int>& parent);
 
-// Unir dos conjuntos en el conjunto disjunto
+/**
+ * Une dos conjuntos disjuntos.
+ * @param u Nodo del primer conjunto.
+ * @param v Nodo del segundo conjunto.
+ * @param parent Vector de padres.
+ */
 void union_set(int u, int v, std::vector<int>& parent);
 
-// Kruskal's algorithm to find the minimum spanning tree (MST)
+/**
+ * Calcula el Árbol de Expansión Mínima (MST) con el algoritmo de Kruskal.
+ * @param g Grafo de entrada.
+ * @return Vector de aristas del MST.
+ */
 std::vector<std::pair<int, int>> kruskal_mst(const Graph& g);
+
 
 #endif

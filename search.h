@@ -39,7 +39,17 @@
 #include <vector>
 #include <utility>
 
-// Function to find the closest central office to a new house location
-std::pair<int, double> find_closest_central(const std::pair<int, int>& newHouse, const std::vector<std::pair<int, int>>& centrals);
+/**
+ * Encuentra la central más cercana a una casa nueva.
+ * 
+ * @param newHouse Coordenadas de la nueva casa.
+ * @param centrals Vector de coordenadas de centrales existentes.
+ * @return Par (índice de la central más cercana, distancia).
+ */
+std::pair<int, double> find_closest_central(
+    const std::pair<int, int>& newHouse,
+    const std::vector<std::pair<int, int>>& centrals
+);
+
 
 #endif
